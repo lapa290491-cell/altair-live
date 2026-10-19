@@ -1,6 +1,9 @@
-import { getDemoArticle } from "@/lib/demo-data";
+import { getDemoArticle, DEMO_ARTICLES } from "@/lib/demo-data";
 import { notFound } from "next/navigation";
 
+export function generateStaticParams() {
+  return DEMO_ARTICLES.map((a) => ({ slug: a.slug }));
+}
 
 export default function NewsPage({ params }: { params: { slug: string } }) {
   const article = getDemoArticle(params.slug);
@@ -61,3 +64,4 @@ export default function NewsPage({ params }: { params: { slug: string } }) {
     </article>
   );
 }
+
